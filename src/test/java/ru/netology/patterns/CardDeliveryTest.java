@@ -39,17 +39,17 @@ class CardDeliveryTest {
         $("[data-test-id=agreement]").click();
         $(".button__text").click();
         $("[data-test-id=success-notification] [class=notification__content]")
-                .shouldHave(exactText("Встреча успешно запланирована на " + firstMeetingDate))
+                .should(exactText("Встреча успешно запланирована на " + firstMeetingDate))
                 .shouldBe(visible);
         $("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("[data-test-id=date] input").setValue(secondMeetingDate);
         $(".button__text").click();
         $("[data-test-id=replan-notification] [class=notification__content]")
-                .shouldHave(exactText("У вас уже запланирована встреча на другую дату. Перепланировать?"))
+                .should(exactText("У вас уже запланирована встреча на другую дату. Перепланировать?"), Duration.ofSeconds(5))
                 .shouldBe(visible);
         $("[data-test-id=replan-notification] [role=button]").click();
         $("[data-test-id=success-notification] [class=notification__content]")
-                .shouldHave(exactText("Встреча успешно запланирована на " + secondMeetingDate), Duration.ofSeconds(3))
+                .should(exactText("Встреча успешно запланирована на " + secondMeetingDate), Duration.ofSeconds(5))
                 .shouldBe(visible);
 
         // TODO: добавить логику теста в рамках которого будет выполнено планирование и перепланирование встречи.
